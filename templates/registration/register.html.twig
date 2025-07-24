@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+{# <style>
+           .example-wrapper { margin: 1em auto; max-width: 1100px; width: 95%; font: 18px/1.5 sans-serif; display:flex; gap: 3rem; flex-wrap:wrap; justify-content: space-evenly}
+           body { background-color: #c2d4b8ff }
+           body {padding:2rem 30rem}
+
+</style>  Il fait presque la meme chose que les div encerclant le formulaire#}
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">  
+            
+                {{ form_errors(registrationForm) }}
+
+                {{ form_start(registrationForm, {'attr': {'class': 'needs-validation'}}) }}
+                    {{ form_row(registrationForm.email, {
+                        'attr': {'class': 'form-control'},
+                        'label_attr': {'class': 'form-label'}
+                    }) }}
+
+                    {{ form_row(registrationForm.plainPassword, {
+                        'label': 'Password',
+                        'attr': {'class': 'form-control'},
+                        'label_attr': {'class': 'form-label'}
+                    }) }}
+
+                    {{ form_row(registrationForm.agreeTerms, {
+                        'label_attr': {'class': 'form-check-label'},
+                        'row_attr': {'class': 'form-check'},
+                        'attr': {'class': 'form-check-input'}
+                    }) }}
+
+                    <button type="submit" class="btn btn-primary mt-3">Register</button>
+                {{ form_end(registrationForm) }}  
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
