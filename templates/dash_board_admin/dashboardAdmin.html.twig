@@ -10,5 +10,21 @@
 
 <div class="example-wrapper">
     <h1>Dash board pour Admin</h1>
+    <div class="example-wrapper">
+    {% for user in users %}
+
+        <div class="card text-center">
+            <div class="card-body">
+                <h5 class="card-title">{{user.email}}</h5>
+                {# <p class="card-text">{{user.firstName}}</p> #}
+                <a href="{{path('app_register')}}" class="btn btn-success">Ajouter</a>
+                <a href="{{ path('app_delete_form', {'id' : user.id})}}" class="btn btn-info">Supprimer</a>
+                <a href="{{ path('app_update_form', {'id' : user.id})}}" class="btn btn-danger">Modifier</a>
+            </div>   
+        </div>
+
+    {% endfor %}
+  
+</div>
 </div>
 {% endblock %}
