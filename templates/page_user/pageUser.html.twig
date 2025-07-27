@@ -1,16 +1,32 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PageUserController!{% endblock %}
+{% block title %} Authentifiés {% endblock %}
 
 {% block body %}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; display:flex; flex-direction:column}
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    .userName { font-weight:700; color: #757128ff; font-size: 150%; border: 1px solid #f5f5f5; padding: 10px; border-radius:1rem}
 </style>
 
     <div class="example-wrapper">
-        <h1> Page des Connectés </h1>
-        <p> Bonjour {{app.user.email}}</p>
+        <h2> Bienvenue à la page des utilisateurs authentifiés </h2>
+        <p> Vous etes connectés en tant que : 
+            <span class= "userName" >{{app.user.email}}</span>
+        </p>
+         <p> Vous pouvez visitez votre compte : 
+            <a class="btn btn-success" href="{{path('app_my_account')}}" > Mon compte</a>
+        </p>
+        <div>
+            <a href=" {{path('app_logout')}} " class="btn btn-warning" > Déconnexion </a>
+        </div>
+
+    {% if is_granted("ROLE_ADMIN") %}
+         <div>
+            <a href=" {{path('app_dashboard_admin')}} " class="btn btn-info" > Admin Dash bord </a>
+        </div>
+    {% endif %}
 
     </div>
 {% endblock %}
+

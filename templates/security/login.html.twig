@@ -3,6 +3,11 @@
 {% block title %}Log in!{% endblock %}
 
 {% block body %}
+<style>
+    .userName { font-weight:600; color: #757128ff; font-size: 100%; border: 1px solid #f5f5f5; padding: 10px; border-radius:1rem}
+    .mb-3 {display: flex; flex-direction:column; gap: 3rem}
+    .notConnected {display: flex; flex-direction:column; gap: 1rem}
+</style>
 
 <div class="container mt-5">
     <div class="row justify-content-center">
@@ -14,16 +19,36 @@
 
                 {% if app.user %}
                     <div class="mb-3">
-                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        <h4> Bonjour, <br> vous etes déjà connecté en tant que 
+                            <span class= "userName" >{{app.user.email}}</span>
+                        </h4>
+                        <p> Vous pouvez vous déconnecter ici : <a href=" {{path('app_logout')}} " class="btn btn-info">Déconnexion</a>
+                        </p>
+                        <p> Ou accéder à votre compte ici : <a class="btn btn-success" href="{{path('app_my_account')}}" > Mon compte</a>
+                        </p>
                     </div>
-                {% endif %}
+                
+                {% else %}
+                    <div class= "notConnected">
+                        <h1 class="h3 mb-3 font-weight-normal"> Connectez-vous svp</h1>
 
-                <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-                <label for="username">Email</label>
-                <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
-                <label for="password">Password</label>
-                <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
-                <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+                        <label for="username">Email</label>
+                        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
+                        <label for="password">Password</label>
+                        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
+                        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
+
+                        <button class="btn btn-lg btn-primary" type="submit">
+                        Sign in
+                        </button>
+
+                        <h1 class="h3 mb-3 font-weight-normal"> Vous n'avez de compte? </h1>
+                        <p> Créer votre compte ici : <a class="btn btn-success" href="{{path('app_register')}}" > S'inscrire </a>
+                        </p>
+
+                    </div>
+
+                {% endif %}
 
                 {#
                     Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
@@ -34,10 +59,6 @@
                         <label for="_remember_me">Remember me</label>
                     </div>
                 #}
-
-                <button class="btn btn-lg btn-primary" type="submit">
-                    Sign in
-                </button>
             </form>
 
         </div>
