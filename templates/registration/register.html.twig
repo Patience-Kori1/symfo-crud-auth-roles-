@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %} Inscription {% endblock %}
 
 {% block body %}
 {# <style>
@@ -13,35 +13,49 @@
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-6">  
-            
-                {{ form_errors(registrationForm) }}
 
-                {{ form_start(registrationForm, {'attr': {'class': 'needs-validation'}}) }}
-                    {{ form_row(registrationForm.email, {
-                        'attr': {'class': 'form-control'},
-                        'label_attr': {'class': 'form-label'}
-                    }) }}
+                {% if app.user %}
 
-                    {{ form_row(registrationForm.plainPassword.first, {
-                        'label': 'Mot de passe',
-                        'attr': {'class': 'form-control'},
-                        'label_attr': {'class': 'form-label'}
-                    }) }}
+                    <h1 class="h3 mb-3 font-weight-normal"> Vous etes déjà inscrit</h1>
+                    <p> Vous pouvez acceder à votre compte ici : 
+                        <a class="btn btn-success" href="{{path('app_my_account')}}" > Mon compte</a>
+                    </p>
+                    <p> Ou vous déconnecter ici : 
+                        <a href=" {{path('app_logout')}} " class="btn btn-warning" > Déconnexion </a>
+                    </p>
 
-                    {{ form_row(registrationForm.plainPassword.second, {
-                        'label': 'Confirmer le mot de passe',
-                        'attr': {'class': 'form-control'},
-                        'label_attr': {'class': 'form-label'}
-                    }) }}
+                {% else %}
 
-                    {{ form_row(registrationForm.agreeTerms, {
-                        'label_attr': {'class': 'form-check-label'},
-                        'row_attr': {'class': 'form-check'},
-                        'attr': {'class': 'form-check-input'}
-                    }) }}
+                    <h1 class="h3 mb-3 font-weight-normal"> Veuillez vous inscrire</h1>
+                    {{ form_errors(registrationForm) }}
 
-                    <button type="submit" class="btn btn-primary mt-3">Register</button>
-                {{ form_end(registrationForm) }}  
+                    {{ form_start(registrationForm, {'attr': {'class': 'needs-validation'}}) }}
+                        {{ form_row(registrationForm.email, {
+                            'attr': {'class': 'form-control'},
+                            'label_attr': {'class': 'form-label'}
+                        }) }}
+
+                        {{ form_row(registrationForm.plainPassword.first, {
+                            'label': 'Mot de passe',
+                            'attr': {'class': 'form-control'},
+                            'label_attr': {'class': 'form-label'}
+                        }) }}
+
+                        {{ form_row(registrationForm.plainPassword.second, {
+                            'label': 'Confirmer le mot de passe',
+                            'attr': {'class': 'form-control'},
+                            'label_attr': {'class': 'form-label'}
+                        }) }}
+
+                        {{ form_row(registrationForm.agreeTerms, {
+                            'label_attr': {'class': 'form-check-label'},
+                            'row_attr': {'class': 'form-check'},
+                            'attr': {'class': 'form-check-input'}
+                        }) }}
+
+                        <button type="submit" class="btn btn-primary mt-3">Register</button>
+                    {{ form_end(registrationForm) }}  
+                {% endif %}
 
             </div>
         </div>

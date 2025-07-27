@@ -14,17 +14,17 @@
         <p> Vous etes connectés en tant que : 
             <span class= "userName" >{{app.user.email}}</span>
         </p>
-         <p> Vous pouvez visitez votre compte : 
+        <p> Vous pouvez acceder à votre compte ici : 
             <a class="btn btn-success" href="{{path('app_my_account')}}" > Mon compte</a>
         </p>
-        <div>
+        <p> Ou vous déconnectez ici : 
             <a href=" {{path('app_logout')}} " class="btn btn-warning" > Déconnexion </a>
-        </div>
+        </p>
 
     {% if is_granted("ROLE_ADMIN") %}
-         <div>
+         <p> Vous etes administrateur, vous pouvez acceder  votre tableau de bord : 
             <a href=" {{path('app_dashboard_admin')}} " class="btn btn-info" > Admin Dash bord </a>
-        </div>
+        </p>
     {% endif %}
 
     </div>

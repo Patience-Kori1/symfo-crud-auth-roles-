@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomePageController!{% endblock %}
+{% block title %} Accueil {% endblock %}
 
 {% block body %}
 <style>
@@ -11,11 +11,10 @@
 <div class="example-wrapper">
     <h1> Bienvenue à la page d'accueil</h1>
 
-    <div>
-        <a href="{{path('app_login')}}"  class="btn btn-danger" > Connexion </a>
-    </div>
-
     {% if app.user == false %}
+        <div>
+            <a href="{{path('app_login')}}"  class="btn btn-danger" > Connexion </a>
+        </div>
         <div>
             <a href="{{path('app_register')}}" class="btn btn-warning" >S'inscrire</a>
         </div>
